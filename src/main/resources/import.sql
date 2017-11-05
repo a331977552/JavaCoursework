@@ -20,6 +20,8 @@
 --  to enter a record with the same PK and create an error.  If we use a high we don't interfere with the sequencing (at least until later).
 -- NOTE: this file should be removed for production systems. 
 <!--
-insert into Test (id, state,abbr) values (10001, 'John', 'Smith')
-insert into Test (id, state,abbr) values (10002, 'tom', 'abbr test')
+insert into Customer (name,email,phoneNumber) values ('john','a13521871@gmail.com','077759697851')
+insert into Customer (name,email,phoneNumber) values ('john1','a13521872@gmail.com','077759697852')
+insert into Customer (name,email,phoneNumber) values ('john2','a13521873@gmail.com','077759697853')
+insert into Customer (name,email,phoneNumber) values ('john3','a13521874@gmail.com','077759697854')
 -->
