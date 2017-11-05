@@ -1,5 +1,7 @@
 package uk.co.java.coursework.service;
 
+import java.util.List;
+
 import javax.enterprise.context.Dependent;
 import javax.inject.Inject;
 
@@ -25,5 +27,8 @@ public class TestService {
 		
 		
 	return 	dao.findById(id);
+	}
+	public List<Test> getAllTest() {
+		return dao.getAllTest();
 	}
 }

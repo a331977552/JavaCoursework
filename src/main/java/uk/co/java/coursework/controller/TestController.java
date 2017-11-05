@@ -1,9 +1,12 @@
-package uk.co.java.coursework.web;
+package uk.co.java.coursework.controller;
+
+import java.util.List;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
@@ -29,11 +32,15 @@ public class TestController {
 	@Path("/test")
 	public Response testA() {
 	
+		List<Test> allTest = service.getAllTest();
+		
+		System.out.println(allTest);
 		Test testById = service.getTestById(1);
+		System.out.println(testById);
+
 		
 		
-		
-		return 	Response.ok(testById).build();
+		return 	Response.ok(allTest).build();
 		
 		
 	}

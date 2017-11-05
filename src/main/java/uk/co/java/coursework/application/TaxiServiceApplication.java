@@ -18,10 +18,9 @@ package uk.co.java.coursework.application;
 
 
 import io.swagger.jaxrs.config.BeanConfig;
-
+import uk.co.java.coursework.controller.TestController;
 import uk.co.java.coursework.utils.JacksonConfig;
 import uk.co.java.coursework.utils.RestServiceExceptionHandler;
-import uk.co.java.coursework.web.TestController;
 
 import org.jboss.resteasy.plugins.providers.RegisterBuiltin;
 import org.jboss.resteasy.spi.ResteasyProviderFactory;
