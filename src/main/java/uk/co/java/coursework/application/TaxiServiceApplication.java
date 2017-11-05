@@ -14,13 +14,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.jboss.quickstarts.wfk;
+package uk.co.java.coursework.application;
 
 
 import io.swagger.jaxrs.config.BeanConfig;
-import org.jboss.quickstarts.wfk.contact.ContactRestService;
-import org.jboss.quickstarts.wfk.util.JacksonConfig;
-import org.jboss.quickstarts.wfk.util.RestServiceExceptionHandler;
+
+import uk.co.java.coursework.utils.JacksonConfig;
+import uk.co.java.coursework.utils.RestServiceExceptionHandler;
+import uk.co.java.coursework.web.TestController;
+
 import org.jboss.resteasy.plugins.providers.RegisterBuiltin;
 import org.jboss.resteasy.spi.ResteasyProviderFactory;
 
@@ -38,21 +40,21 @@ import java.util.Set;
  * </p>
  */
 @ApplicationPath("/api")
-public class ContactServiceApplication extends Application {
+public class TaxiServiceApplication extends Application {
 
 
-    public ContactServiceApplication() {
+    public TaxiServiceApplication() {
         BeanConfig beanConfig = new BeanConfig();
         beanConfig.setVersion("0.1.0");
         beanConfig.setSchemes(new String[]{"http"});
         // We may no longer need to change this
         // beanConfig.setHost("localhost:8080/jboss-contacts-swagger");
         beanConfig.setBasePath("/api");
-        beanConfig.setTitle("JBoss Contacts Swagger");
-        beanConfig.setDescription("JBoss WFK Contacts Swagger Quickstart");
+        beanConfig.setTitle("JAVA Coursework");
+        beanConfig.setDescription("for coursework usage only");
         //Add additional RESTService containing packages here, separated by commas:
         // "org.jboss.quickstarts.wfk.contact, org.jboss.quickstarts.wfk.other"
-        beanConfig.setResourcePackage("org.jboss.quickstarts.wfk.contact");
+        beanConfig.setResourcePackage("uk.co.java.coursework");
         beanConfig.setScan(true);
 
         //Do not edit below
@@ -64,7 +66,7 @@ public class ContactServiceApplication extends Application {
         Set<Class<?>> services = new HashSet<>();
 
         //Add RESTful resources here as you create them
-        services.add(ContactRestService.class);
+        services.add(TestController.class);
 
         //Do not edit below
         services.add(RestServiceExceptionHandler.class);

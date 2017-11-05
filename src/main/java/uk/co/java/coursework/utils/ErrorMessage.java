@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.jboss.quickstarts.wfk.util;
+package uk.co.java.coursework.utils;
 
 import java.util.HashMap;
 import java.util.Map;

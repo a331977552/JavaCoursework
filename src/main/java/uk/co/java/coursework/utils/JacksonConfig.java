@@ -14,31 +14,37 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.jboss.quickstarts.wfk.area;
+package uk.co.java.coursework.utils;
 
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
-import java.util.List;
+import javax.ws.rs.ext.ContextResolver;
+import javax.ws.rs.ext.Provider;
+import java.text.SimpleDateFormat;
 
 /**
- * <p>Clientside representation of an AreaCode object pulled from an external RESTFul API.</p>
+ * <p>This is a config class that effects the Jackson library used to translate the data over the REST endpoint.</p>
+ * 
+ * @author Joshua Wilson, Vineet Reynolds
  *
- * <p>This is the mirror opposite of a server side JAX-RS service</p>
- *
- * @author hugofirth
  */
-@Path("/areas")
+@Provider
 @Produces(MediaType.APPLICATION_JSON)
-public interface AreaService {
+public class JacksonConfig implements ContextResolver<ObjectMapper> {
 
-    @GET
-    List<Area> getAreas();
+    private ObjectMapper objectMapper;
 
+    // Configure the Date coming from the client to be in ISO-8601 instead of milliseconds from the epoch.
+    public JacksonConfig(){
 
-    @GET
-    @Path("/{id:[0-9]+}")
-    Area getAreaById(@PathParam("id") int id);
+        this.objectMapper = new ObjectMapper();
+        this.objectMapper.setDateFormat(new SimpleDateFormat("yyyy-MM-dd"));
+    }
+
+    @Override
+    public ObjectMapper getContext(Class<?> objectType) {
+        return objectMapper;
+    }
 }

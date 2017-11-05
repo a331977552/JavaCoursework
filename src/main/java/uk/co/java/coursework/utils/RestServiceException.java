@@ -16,7 +16,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.jboss.quickstarts.wfk.util;
+package uk.co.java.coursework.utils;
 
 import javax.ejb.ApplicationException;
 import javax.ws.rs.core.Response;
@@ -29,7 +29,7 @@ import java.util.Map;
  * RESTful API and returning JSON.</p>
  *
  * @author hugofirth
- * @see org.jboss.quickstarts.wfk.util.RestServiceExceptionHandler
+ * @see uk.co.java.coursework.utils.RestServiceExceptionHandler
  */
 @ApplicationException(rollback = true)
 public class RestServiceException extends RuntimeException implements
