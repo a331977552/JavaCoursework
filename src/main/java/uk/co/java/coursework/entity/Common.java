@@ -27,6 +27,10 @@ public class Common<T> {
 		this.msg = msg;
 	}
 
+	public Common() {
+		super();
+	}
+
 	public Common(Integer statusCode) {
 		super();
 		this.statusCode = statusCode;

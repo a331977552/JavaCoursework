@@ -24,4 +24,12 @@ insert into Customer (name,email,phoneNumber) values ('john','a13521871@gmail.co
 insert into Customer (name,email,phoneNumber) values ('john1','a13521872@gmail.com','01234567892')
 insert into Customer (name,email,phoneNumber) values ('john2','a13521873@gmail.com','01234567893')
 insert into Customer (name,email,phoneNumber) values ('john3','a13521874@gmail.com','01234567894')
+insert into taxi (registrationNumber,numberOfSeats) values ('123456a',3)
+insert into taxi (registrationNumber,numberOfSeats) values ('v23456a',2)
+insert into taxi (registrationNumber,numberOfSeats) values ('a23456a',20)
+insert into taxi (registrationNumber,numberOfSeats) values ('123456b',10)
+insert into booking (customerId,taxiId,bookingdate) values (1,1,'2018-10-01')
+insert into booking (customerId,taxiId,bookingdate) values (1,2,'2018-11-01')
+insert into booking (customerId,taxiId,bookingdate) values (2,3,'2018-12-01')
+
 -->

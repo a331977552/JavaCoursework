@@ -47,6 +47,7 @@ public class TaxiService implements TaxiServiceInterface {
 	public Taxi addTaxi(Taxi taxi) throws ConstraintViolationException, ValidationException, Exception {
 
 		validator.validateBean(taxi);
+		
 		try {
 			Taxi taxiByRegistration = dao.getTaxiByRegistration(taxi.getRegistrationNumber());
 			if (taxiByRegistration != null) {

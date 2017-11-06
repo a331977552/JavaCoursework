@@ -65,7 +65,7 @@ public class Taxi {
 	}
 
 
-	@Size(min=2,max=20,message="number of Seats must be between 2 and 20")
+	
 	@Column(name="numberOfSeats")
 	private Integer numberOfSeats;
 	

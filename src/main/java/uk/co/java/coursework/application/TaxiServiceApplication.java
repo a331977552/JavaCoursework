@@ -18,6 +18,7 @@ package uk.co.java.coursework.application;
 
 
 import io.swagger.jaxrs.config.BeanConfig;
+import uk.co.java.coursework.controller.BookingController;
 import uk.co.java.coursework.controller.CustomerController;
 import uk.co.java.coursework.controller.TaxiController;
 import uk.co.java.coursework.service.CusomterService;
@@ -69,6 +70,7 @@ public class TaxiServiceApplication extends Application {
         //Add RESTful resources here as you create them
         services.add(CustomerController.class);
         services.add(TaxiController.class);
+        services.add(BookingController.class);
         
         //Do not edit below
         services.add(RestServiceExceptionHandler.class);

@@ -80,6 +80,16 @@ public class TaxiController {
 		if (taxi == null) {
 			throw new RestServiceException("Bad Request", Response.Status.BAD_REQUEST);
 		}
+		if(taxi.getNumberOfSeats()==null || taxi.getNumberOfSeats()<2 ||taxi.getNumberOfSeats()>20)
+		{
+			
+			
+			Common<Taxi> common=new Common<>("failure: numberOfseats should be between 2 and 20",null,0);
+			
+			return Response.ok(common).build();
+			
+		}	
+		
 		try {
 			Taxi addedTaxi= service.addTaxi(taxi);
 			Common<Taxi> common=new Common<>("success",addedTaxi,1);
