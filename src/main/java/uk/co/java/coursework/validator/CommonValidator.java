@@ -14,9 +14,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package uk.co.java.coursework.utils;
+package uk.co.java.coursework.validator;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.inject.Inject;
@@ -37,7 +39,7 @@ import uk.co.java.coursework.exception.UniqueEmailException;
  * @see ContactRepository
  * @see javax.validation.Validator
  */
-public class CustomerValidator {
+public class CommonValidator {
 	@Inject
     private Validator validator;
 
@@ -55,15 +57,19 @@ public class CustomerValidator {
      * @throws ConstraintViolationException If Bean Validation errors exist
      * @throws ValidationException If contact with the same email already exists
      */
-    public    void validateContact(Customer customer) throws ConstraintViolationException, ValidationException {
+    public    void validateBean(Object bean) throws ConstraintViolationException, ValidationException {
         // Create a bean validator and check for issues.
-
-        Set<ConstraintViolation<Customer>> violations = validator.validate(customer);
+    	
+    	
+    	
+        Set<ConstraintViolation<Object>> violations = validator.validate(bean);
         	
-        if (!violations.isEmpty()) {
-            throw new ConstraintViolationException(new HashSet<ConstraintViolation<?>>(violations));
+       
+        if(!violations.isEmpty())
+        {
+        	throw new ConstraintViolationException(violations);
         }
-
+      
      
     }
 

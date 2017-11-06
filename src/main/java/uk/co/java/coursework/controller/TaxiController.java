@@ -29,6 +29,7 @@ import uk.co.java.coursework.entity.Common;
 import uk.co.java.coursework.entity.Customer;
 import uk.co.java.coursework.entity.Taxi;
 import uk.co.java.coursework.exception.UniqueEmailException;
+import uk.co.java.coursework.exception.UniqueRegistrationNumberException;
 import uk.co.java.coursework.service.CustomerServiceInterface;
 import uk.co.java.coursework.service.TaxiServiceInterface;
 import uk.co.java.coursework.utils.RestServiceException;
@@ -36,7 +37,7 @@ import uk.co.java.coursework.utils.RestServiceException;
 @Path("/taxi")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
-@Api(value = "/taxi", description = "Operations about test")
+@Api(value = "/taxi", description = "Operations about taxi")
 @Stateless
 public class TaxiController {
 
@@ -48,8 +49,8 @@ public class TaxiController {
 	@ApiOperation(value = "Fetch all Taxis", notes = "return a JSON array of taxis entities, if any")
 	@Path("/getAllTaxis")
 	public Response getAllCustomers() {
-		List<Customer> all = service.getAllCustomers();
-		Common<List<Customer>> common=new Common<>("success",all,1);
+		List<Taxi> all = service.getAllTaxis();
+		Common<List<Taxi>> common=new Common<>("success",all,1);
 		return Response.ok(common).build();
 
 	}
@@ -58,8 +59,8 @@ public class TaxiController {
 	@ApiOperation(value = "Fetch a certain Taxi by id", notes = "return a JSON object of Taxi entity, if exists")
 	@Path("/getTaxiById/{id:[0-9]+}")
 	public Response getAllCustomerById(@PathParam("id") Long id) {
-		Customer customer = service.getCustomerById(id);
-		Common<Customer> common=new Common<>("success",customer,1);
+		Taxi taxi = service.getTaxiById(id);
+		Common<Taxi> common=new Common<>("success",taxi,1);
 		
 		return Response.ok(common).build();
 
@@ -67,28 +68,25 @@ public class TaxiController {
 
 	@POST
 	@ApiOperation(value = "add a Taxi by adding whole variables except id", notes = "return a JSON object of Taxi entity, if succeed")
-	@Path("/addCustomer")
+	@Path("/addTaxi")
 	@ApiResponses(value = { @ApiResponse(code = 201, message = "Taxi added successfully."),
 			@ApiResponse(code = 400, message = "Invalid Taxi supplied in request body"),
 			@ApiResponse(code = 200, message = "successfully add a Taxi"),
 			@ApiResponse(code = 409, message = "Taxi supplied in request body conflicts with an existing Taxi"),
 			@ApiResponse(code = 500, message = "An unexpected error occurred whilst processing the request") })
 
-	public Response addCustomer(
+	public Response addTaxi(
 			@ApiParam(value = "JSON representation of Taxi object to be added to the database", required = true) Taxi taxi) {
 		if (taxi == null) {
 			throw new RestServiceException("Bad Request", Response.Status.BAD_REQUEST);
 		}
-
 		try {
-			Customer addedTaxi= service.createCustomer(taxi);
-			Common<Customer> common=new Common<>("success",addedTaxi,1);
+			Taxi addedTaxi= service.addTaxi(taxi);
+			Common<Taxi> common=new Common<>("success",addedTaxi,1);
 			return Response.ok(common).build();
 		} catch (ConstraintViolationException e) {
 			Map<String, String> responseObj = new HashMap<>();
-
-			for (ConstraintViolation<?> violation : e.getConstraintViolations()) {
-				
+			for (ConstraintViolation<?> violation : e.getConstraintViolations()) {				
 				responseObj.put(violation.getPropertyPath().toString(), violation.getMessage());
 			}
 			throw new RestServiceException("Bad Request", responseObj, Response.Status.BAD_REQUEST, e);
@@ -96,7 +94,7 @@ public class TaxiController {
 		} catch (ValidationException e) {
 			e.printStackTrace();
 			throw new RestServiceException(e);
-		}catch(UniqueEmailException e) {
+		}catch(UniqueRegistrationNumberException e) {
 			String message = e.getMessage();
 			Common<Customer> common=new Common<>("failure: "+message,null,0);
 			return Response.ok(common).build();

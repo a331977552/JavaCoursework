@@ -16,7 +16,7 @@ import javax.validation.ValidationException;
 
 import uk.co.java.coursework.entity.Customer;
 import uk.co.java.coursework.exception.UniqueEmailException;
-import uk.co.java.coursework.utils.CustomerValidator;
+import uk.co.java.coursework.validator.CommonValidator;
 
 public class CustomerDao implements CustomerDaoInterface {
 

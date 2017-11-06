@@ -12,7 +12,7 @@ import uk.co.java.coursework.dao.CustomerDao;
 import uk.co.java.coursework.dao.CustomerDaoInterface;
 import uk.co.java.coursework.entity.Customer;
 import uk.co.java.coursework.exception.UniqueEmailException;
-import uk.co.java.coursework.utils.CustomerValidator;
+import uk.co.java.coursework.validator.CommonValidator;
 
 @Dependent
 public class CusomterService implements CustomerServiceInterface{
@@ -21,7 +21,7 @@ public class CusomterService implements CustomerServiceInterface{
 	@Inject
 	CustomerDaoInterface dao;
 	@Inject
-	private CustomerValidator validator;
+	private CommonValidator validator;
 	@Override
 	public List<Customer> getAllCustomers() {
 		
@@ -45,7 +45,8 @@ public class CusomterService implements CustomerServiceInterface{
 		} catch (NoResultException e) {
 			//ignore,this means there is not user who already used this email address	
 		}
-		validator.validateContact(customer);
+		validator.validateBean(customer);
+		
 		return dao.createCustomer(customer);
 	
 	}

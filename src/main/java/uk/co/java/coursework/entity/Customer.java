@@ -43,7 +43,7 @@ public class Customer implements Serializable{
 	private Long id;
 	
 	
- 	@NotNull
+ 	@NotNull(message="eamil cannot be null")
   	@Column(name="email",unique=true)
  	
  	@Email(message = "The email address must be in the format of name@domain.com")
@@ -55,7 +55,7 @@ public class Customer implements Serializable{
  	private String phoneNumber;
 	
  	@NotNull
-  	@Size(min=1,max=49)
+  	@Size(min=1,max=49,message="name's size must be between 1 and 49")
  	@Column(name="name",nullable=false)
  	private String name;
  	
